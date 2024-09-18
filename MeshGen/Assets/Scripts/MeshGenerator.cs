@@ -26,9 +26,10 @@ public class MeshGenerator : MonoBehaviour
 
     void CreateShape()
     {
+        //List of vertices for the triangle
         vertices = new Vector3[(xSize + 1) * (zSize + 1)];
 
-        
+        //Creates a grid of vertices
         for (int i =0, z = 0; z <= zSize; z++) 
         { 
             for (int x = 0; x <= xSize; x++)
@@ -39,11 +40,13 @@ public class MeshGenerator : MonoBehaviour
             }
         }
 
+        //List of triangles
         triangles = new int[xSize * zSize * 6];
 
         int vert = 0;
         int tris = 0;
 
+        //Turns the vertices into triangles, must be in a specified order so Unity reneders them forward.
         for (int z = 0; z < zSize; z++)
         {
             for (int x = 0; x < xSize; x++)
@@ -68,11 +71,14 @@ public class MeshGenerator : MonoBehaviour
 
     void UpdateMesh()
     {
+        //Clears old mesh data.
         mesh.Clear();
 
+        //Tells the mesh its vertices and triangles.
         mesh.vertices = vertices;
         mesh.triangles = triangles;
 
+        //Adjusts normals for lighting.
         mesh.RecalculateNormals();
     }
 
