@@ -14,11 +14,15 @@ public class MeshGenerator : MonoBehaviour
     public int xSize = 20;
     public int zSize = 20;
 
+    public float scale = .3f;
+
     // Start is called before the first frame update
     void Start()
     {
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
+
+        
 
         CreateShape();
         UpdateMesh();
@@ -34,7 +38,15 @@ public class MeshGenerator : MonoBehaviour
         { 
             for (int x = 0; x <= xSize; x++)
             {
-                float y = Mathf.PerlinNoise(x * .3f, z * .3f) * 2f;
+                float offsetX = Random.Range(1, 9999);
+                float offsetZ = Random.Range(1, 9999);
+
+                //The multiple for scale (h
+                float xCoord = (x * scale + offsetX);
+                float zCoord = (z * scale  + offsetZ);
+
+
+                float y = Mathf.PerlinNoise( xCoord, zCoord) * 2f;
                 vertices[i] = new Vector3(x, y, z);
                 i++;
             }
