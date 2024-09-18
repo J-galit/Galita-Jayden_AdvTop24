@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using TMPro;
 using UnityEngine.UI;
 
 public class PokemonDisplay : MonoBehaviour
 {
+    public PokemonScritptable[] pokemonList;
+
     public PokemonScritptable pokemon;
+
+
 
     public Image pokemonImage;
 
@@ -17,14 +22,18 @@ public class PokemonDisplay : MonoBehaviour
     public TMP_Text natureText;
 
     public string[] nature = { "Quiet", "Quirky", "Bold", "Modest", "Sassy" };
+    
     // Start is called before the first frame update
     void Start()
     {
+
+        pokemon = pokemonList[Random.Range(0,pokemonList.Length)];
+
         nameText.text = pokemon.name;
 
-        genderText.text = pokemon.gender[Random.Range(0,1)];
+        genderText.text = pokemon.gender[Random.Range(0,pokemon.gender.Length)];
 
-        abilityText.text = pokemon.ability[Random.Range(0, 1)];
+        abilityText.text = pokemon.ability[Random.Range(0, pokemon.ability.Length)];
 
         typeText.text = $"{pokemon.type[0]}/{pokemon.type[1]}";
 
