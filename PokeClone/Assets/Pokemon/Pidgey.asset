@@ -22,5 +22,4 @@ MonoBehaviour:
   ability:
   - Keen Eye
   - Tangled Feet
-  nature: []
   artwork: {fileID: 21300000, guid: 324f7b339c3aa764ebf5eee528b2114d, type: 3}

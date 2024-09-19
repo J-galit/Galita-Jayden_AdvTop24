@@ -40,8 +40,6 @@ public class PokemonDisplay : MonoBehaviour
     public void ChooseAPokemon()
     {
         
-        if (Random.Range(0, 100) < 25)
-        {
             pokemon = pokemonList[Random.Range(0, pokemonList.Length)];
 
             nameText.text = pokemon.name;
@@ -55,8 +53,9 @@ public class PokemonDisplay : MonoBehaviour
             natureText.text = nature[Random.Range(0, 5)];
 
             pokemonImage.sprite = pokemon.artwork;
-        }
-        gameObject.SetActive(true);
+
+            gameObject.SetActive(true);
+
     }
 
     

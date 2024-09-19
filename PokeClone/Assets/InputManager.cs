@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+    private bool ecounter = false;
 
     public PokemonDisplay display;
 
@@ -17,9 +18,20 @@ public class InputManager : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && !ecounter)
         {
-            display.ChooseAPokemon();
+            if (Random.Range(0, 100) < 25)
+            {
+                display.ChooseAPokemon();
+                ecounter = true;
+            }
         }
+
+        if (Input.GetKeyDown("backspace"))
+        {
+            display.gameObject.SetActive(false);
+            ecounter = false;
+        }
+
     }
 }

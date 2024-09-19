@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc957734591fbf1418fc1cb78601e374, type: 3}
   m_Name: Rattata
   m_EditorClassIdentifier: 
-  name: 
+  name: Rattata
   gender:
-  - 
-  - 
+  - Male
+  - Female
   type:
-  - 
+  - Normal
   - 
   ability:
-  - 
-  - 
-  artwork: {fileID: 0}
+  - Run Away
+  - Pickup
+  artwork: {fileID: 21300000, guid: a4c797248ea33ed428764cce7ec72f88, type: 3}
