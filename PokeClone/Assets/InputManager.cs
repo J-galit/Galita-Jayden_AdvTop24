@@ -20,6 +20,7 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetKeyDown("space") && !ecounter)
         {
+            //Encounter Rate for the Pokemon, if true creates and displays a Pokemon.
             if (Random.Range(0, 100) < 25)
             {
                 display.ChooseAPokemon();
@@ -27,6 +28,7 @@ public class InputManager : MonoBehaviour
             }
         }
 
+        //Removes the Pokemon Display from the screen.
         if (Input.GetKeyDown("backspace"))
         {
             display.gameObject.SetActive(false);
