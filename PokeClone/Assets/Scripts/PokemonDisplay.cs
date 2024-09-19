@@ -26,27 +26,39 @@ public class PokemonDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        pokemon = pokemonList[Random.Range(0,pokemonList.Length)];
-
-        nameText.text = pokemon.name;
-
-        genderText.text = pokemon.gender[Random.Range(0,pokemon.gender.Length)];
-
-        abilityText.text = pokemon.ability[Random.Range(0, pokemon.ability.Length)];
-
-        typeText.text = $"{pokemon.type[0]}/{pokemon.type[1]}";
-
+        ChooseAPokemon();
         
-        natureText.text = nature[Random.Range(0, 5)];
-       
-
-        pokemonImage.sprite = pokemon.artwork;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+       
+            
     }
+
+    public void ChooseAPokemon()
+    {
+        
+        if (Random.Range(0, 100) < 25)
+        {
+            pokemon = pokemonList[Random.Range(0, pokemonList.Length)];
+
+            nameText.text = pokemon.name;
+
+            genderText.text = pokemon.gender[Random.Range(0, pokemon.gender.Length)];
+
+            abilityText.text = pokemon.ability[Random.Range(0, pokemon.ability.Length)];
+
+            typeText.text = $"{pokemon.type[0]}/{pokemon.type[1]}";
+
+            natureText.text = nature[Random.Range(0, 5)];
+
+            pokemonImage.sprite = pokemon.artwork;
+        }
+        gameObject.SetActive(true);
+    }
+
+    
+
 }
