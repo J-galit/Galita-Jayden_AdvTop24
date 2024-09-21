@@ -22,15 +22,15 @@ public class MeshGenerator : MonoBehaviour
     {
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
-        GetComponent<MeshCollider>().sharedMesh = mesh;
-
+        
+        
 
         CreateShape();
-        
         UpdateMesh();
         
     }
 
+    //Fractal Noise layering perlin noise.
     void CreateShape()
     {
         //List of vertices for the triangle
@@ -50,7 +50,7 @@ public class MeshGenerator : MonoBehaviour
 
 
                 float y = Mathf.PerlinNoise( xCoord, zCoord) * 2f;
-                vertices[i] = new Vector3(x, 0, z);
+                vertices[i] = new Vector3(x, y, z);
                 i++;
             }
         }
@@ -92,6 +92,8 @@ public class MeshGenerator : MonoBehaviour
         //Tells the mesh its vertices and triangles.
         mesh.vertices = vertices;
         mesh.triangles = triangles;
+
+        GetComponent<MeshCollider>().sharedMesh = mesh;
 
         //Adjusts normals for lighting.
         mesh.RecalculateNormals();
