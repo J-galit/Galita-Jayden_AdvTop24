@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 [RequireComponent(typeof(MeshFilter))]
+[RequireComponent(typeof(MeshCollider))]
 public class MeshGenerator : MonoBehaviour
 {
     Mesh mesh;
@@ -21,11 +22,13 @@ public class MeshGenerator : MonoBehaviour
     {
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
+        GetComponent<MeshCollider>().sharedMesh = mesh;
 
-        
 
         CreateShape();
+        
         UpdateMesh();
+        
     }
 
     void CreateShape()
@@ -47,7 +50,7 @@ public class MeshGenerator : MonoBehaviour
 
 
                 float y = Mathf.PerlinNoise( xCoord, zCoord) * 2f;
-                vertices[i] = new Vector3(x, y, z);
+                vertices[i] = new Vector3(x, 0, z);
                 i++;
             }
         }
