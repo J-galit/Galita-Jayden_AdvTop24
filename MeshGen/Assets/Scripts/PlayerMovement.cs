@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (grounded)
         {
-            print("Grounds");
+            
             rb.drag = groundDrag;
         }
         else

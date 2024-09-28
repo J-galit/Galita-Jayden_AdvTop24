@@ -41,16 +41,20 @@ public class MeshGenerator : MonoBehaviour
         { 
             for (int x = 0; x <= xSize; x++)
             {
+                //Randomizes the perlin noise
                 float offsetX = Random.Range(1, 9999);
                 float offsetZ = Random.Range(1, 9999);
 
-                //The multiple for scale (h
-                float xCoord = (x * scale + offsetX);
-                float zCoord = (z * scale  + offsetZ);
+                //The multiple for scale
+                float xCoord = (x * 1 / scale);// + offsetX);
+                float zCoord = (z * 1 / scale);//  + offsetZ);
 
 
-                float y = Mathf.PerlinNoise( xCoord, zCoord) * 2f;
-                vertices[i] = new Vector3(x, y, z);
+                float y = Mathf.PerlinNoise( xCoord, zCoord) * 32f +
+                          Mathf.PerlinNoise(xCoord * 2, zCoord * 2) * 16f +
+                          Mathf.PerlinNoise(xCoord * 4, zCoord * 4) * 8f;
+
+                vertices[i] = new Vector3(x * 1, y, z * 1);
                 i++;
             }
         }

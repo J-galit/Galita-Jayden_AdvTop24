@@ -189,7 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   groundDrag: 5
-  jumpForce: 12
+  jumpForce: 7
   jumpCooldown: 0.25
   airMultiplier: 0.4
   jumpKey: 32
@@ -621,7 +621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSize: 100
   zSize: 100
-  scale: 0.3
+  scale: 40
 --- !u!23 &1405029270
 MeshRenderer:
   m_ObjectHideFlags: 0
