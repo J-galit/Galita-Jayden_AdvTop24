@@ -17,6 +17,8 @@ public class MeshGenerator : MonoBehaviour
 
     public float scale = .3f;
 
+    public float distanceBetweenVerts;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,7 +56,7 @@ public class MeshGenerator : MonoBehaviour
                           Mathf.PerlinNoise(xCoord * 2, zCoord * 2) * 16f +
                           Mathf.PerlinNoise(xCoord * 4, zCoord * 4) * 8f;
 
-                vertices[i] = new Vector3(x * 1, y, z * 1);
+                vertices[i] = new Vector3(x * distanceBetweenVerts, y, z * distanceBetweenVerts);
                 i++;
             }
         }
