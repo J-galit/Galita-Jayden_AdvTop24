@@ -10,6 +10,9 @@ public class MeshGenerator : MonoBehaviour
     Mesh mesh;
 
     Vector3[] vertices;
+
+    List<Vector3> mountainPoints = new List<Vector3>();
+
     int[] triangles;
 
     public int xSize = 20;
@@ -18,6 +21,8 @@ public class MeshGenerator : MonoBehaviour
     public float scale = .3f;
 
     public float distanceBetweenVerts;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -51,12 +56,18 @@ public class MeshGenerator : MonoBehaviour
                 float xCoord = (x * 1 / scale);// + offsetX);
                 float zCoord = (z * 1 / scale);//  + offsetZ);
 
-
-                float y = Mathf.PerlinNoise( xCoord, zCoord) * 32f +
+                //Perlin Noise to create the random generation.
+                float y = Mathf.PerlinNoise(xCoord, zCoord) * 32f +
                           Mathf.PerlinNoise(xCoord * 2, zCoord * 2) * 16f +
                           Mathf.PerlinNoise(xCoord * 4, zCoord * 4) * 8f;
 
                 vertices[i] = new Vector3(x * distanceBetweenVerts, y, z * distanceBetweenVerts);
+
+                if (vertices[i].y > 25)
+                {
+                    mountainPoints.Add(vertices[i]);
+                }
+
                 i++;
             }
         }
@@ -105,6 +116,8 @@ public class MeshGenerator : MonoBehaviour
         mesh.RecalculateNormals();
     }
 
+
+    //For visualizing the vertices
     private void OnDrawGizmos()
     {
         if (vertices == null)
@@ -112,9 +125,9 @@ public class MeshGenerator : MonoBehaviour
             return;
         }
 
-        for(int i = 0; i < vertices.Length; i++)
+        for(int i = 0; i < mountainPoints.Count; i++)
         {
-            Gizmos.DrawSphere(vertices[i], .1f);
+            Gizmos.DrawSphere(mountainPoints[i], .1f);
         }
     }
 
