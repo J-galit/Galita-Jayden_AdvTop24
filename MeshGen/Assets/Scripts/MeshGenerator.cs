@@ -67,6 +67,10 @@ public class MeshGenerator : MonoBehaviour
                 {
                     mountainPoints.Add(vertices[i]);
                 }
+                if (vertices[i].y < 20)
+                {
+
+                }
 
                 i++;
             }
