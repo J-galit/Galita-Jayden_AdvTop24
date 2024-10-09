@@ -619,8 +619,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d456848e4c853844a96889105462f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xSize: 100
-  zSize: 100
+  mountainTree: {fileID: 919132149155446097, guid: afe0929e7dbb1f64b8fe4456cf556446, type: 3}
+  valleyTree: {fileID: 919132149155446097, guid: 5883908172c0c984a8583e412851763c, type: 3}
+  xSize: 40
+  zSize: 40
   scale: 20
   distanceBetweenVerts: 5
 --- !u!23 &1405029270
@@ -643,7 +645,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3b0a18e07c25ef349aee450383ee9ad7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

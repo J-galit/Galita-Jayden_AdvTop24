@@ -13,7 +13,7 @@ public class MeshGenerator : MonoBehaviour
 
     //Tree Spawning Variables
     List<Vector3> mountainPoints = new List<Vector3>();
-    List<Vector3> ValleyPoints = new List<Vector3>();
+    List<Vector3> valleyPoints = new List<Vector3>();
 
     public GameObject mountainTree;
     public GameObject valleyTree;
@@ -42,7 +42,8 @@ public class MeshGenerator : MonoBehaviour
 
         CreateShape();
         UpdateMesh();
-        SpawnTree(mountainPoints, 10);
+        SpawnTree(mountainPoints, mountainTree, 10);
+        SpawnTree(valleyPoints, valleyTree, 60);
     }
 
     //Fractal Noise layering perlin noise.
@@ -77,7 +78,7 @@ public class MeshGenerator : MonoBehaviour
                 }
                 if (vertices[i].y < 20)
                 {
-                    ValleyPoints.Add(vertices[i]);
+                    valleyPoints.Add(vertices[i]);
                 }
 
                 i++;
@@ -129,16 +130,16 @@ public class MeshGenerator : MonoBehaviour
     }
 
 
-    void SpawnTree(List<Vector3> points, float frequency)
+    void SpawnTree(List<Vector3> points, GameObject typeOfTree,float frequency)
     {
         foreach (var point in points)
         {
             float treeCheck = Random.Range(0.0f, 100f);
 
-            if (treeCheck > frequency)
+            if (treeCheck < frequency)
             {
 
-                Instantiate(mountainTree, point, Quaternion.identity);
+                Instantiate(typeOfTree, point, Quaternion.identity);
 
             }
 
