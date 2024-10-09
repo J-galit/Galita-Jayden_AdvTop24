@@ -11,10 +11,18 @@ public class MeshGenerator : MonoBehaviour
 
     Vector3[] vertices;
 
+    //Tree Spawning Variables
     List<Vector3> mountainPoints = new List<Vector3>();
+    List<Vector3> ValleyPoints = new List<Vector3>();
+
+    public GameObject mountainTree;
+    public GameObject valleyTree;
+
 
     int[] triangles;
 
+
+    //Perlin Noise Variables
     public int xSize = 20;
     public int zSize = 20;
 
@@ -34,7 +42,7 @@ public class MeshGenerator : MonoBehaviour
 
         CreateShape();
         UpdateMesh();
-        
+        SpawnTree(mountainPoints, 10);
     }
 
     //Fractal Noise layering perlin noise.
@@ -69,7 +77,7 @@ public class MeshGenerator : MonoBehaviour
                 }
                 if (vertices[i].y < 20)
                 {
-
+                    ValleyPoints.Add(vertices[i]);
                 }
 
                 i++;
@@ -118,6 +126,26 @@ public class MeshGenerator : MonoBehaviour
 
         //Adjusts normals for lighting.
         mesh.RecalculateNormals();
+    }
+
+
+    void SpawnTree(List<Vector3> points, float frequency)
+    {
+        foreach (var point in points)
+        {
+            float treeCheck = Random.Range(0.0f, 100f);
+
+            if (treeCheck > frequency)
+            {
+
+                Instantiate(mountainTree, point, Quaternion.identity);
+
+            }
+
+
+        }
+
+
     }
 
 
