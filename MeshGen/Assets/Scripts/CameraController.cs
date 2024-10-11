@@ -24,7 +24,12 @@ public class CameraController : MonoBehaviour
     {
         //Get the inputs for x and y of the mouse.
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
+        
+        
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+
+        //mouseX = Mathf.Clamp(mouseX, -1, 1);
+        //mouseY = Mathf.Clamp(mouseY, -1, 1);
 
         yRotation += mouseX;
 
