@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class DungeonGenerator : MonoBehaviour
 {
+
+    public class Cell
+    {
+        public bool vistited = false;
+        public bool[] status =new bool[4];
+    }
+
+    public Vector2 size;
+    public int startPos = 0;
+
+    List<Cell> board;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,4 +28,15 @@ public class DungeonGenerator : MonoBehaviour
     {
         
     }
+
+    void MazeGenerator()
+    {
+
+    }
+
+    void CheckNeighbors()
+    {
+
+    }
+
 }
