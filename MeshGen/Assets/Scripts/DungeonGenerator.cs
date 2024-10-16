@@ -39,8 +39,13 @@ public class DungeonGenerator : MonoBehaviour
         {
             for (int j = 0; j < size.y; j++)
             {
-                var newRoom = Instantiate(room,new Vector3(i*offset.x,0,j*offset.y), Quaternion.identity, transform).GetComponent<RoomBehaviour>();
-                newRoom.UpdateRoom(board[Mathf.FloorToInt(i + j * size.x)].status);
+                Cell currentCell = board[Mathf.FloorToInt(i + j * size.x)];
+                if (currentCell.vistited) 
+                {
+                    var newRoom = Instantiate(room, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehaviour>();
+                    newRoom.UpdateRoom(board[Mathf.FloorToInt(i + j * size.x)].status);
+                }
+                
             }
 
         }
@@ -73,6 +78,11 @@ public class DungeonGenerator : MonoBehaviour
             k++;
 
             board[currentCell].vistited = true;
+
+            if(currentCell == board.Count - 1)
+            {
+                break;
+            }
 
             List<int> neighbors = CheckNeighbors(currentCell);
 
