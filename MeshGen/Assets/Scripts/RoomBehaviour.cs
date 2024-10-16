@@ -14,6 +14,7 @@ public class RoomBehaviour : MonoBehaviour
     void Start()
     {
         UpdateRoom(testStatus);
+
     }
 
     void UpdateRoom(bool[] status)
