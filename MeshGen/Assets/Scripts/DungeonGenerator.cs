@@ -14,13 +14,16 @@ public class DungeonGenerator : MonoBehaviour
     public Vector2 size;
     public int startPos = 0;
 
+    public GameObject room;
+    public Vector2 offset;
+
     List<Cell> board;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        MazeGenerator();
     }
 
     // Update is called once per frame
@@ -28,6 +31,23 @@ public class DungeonGenerator : MonoBehaviour
     {
         
     }
+
+   void GenerateDungeon()
+   {
+
+        for (int i = 0; i < size.x; i++) 
+        {
+            for (int j = 0; j < size.y; j++)
+            {
+                var newRoom = Instantiate(room,new Vector3(i*offset.x,0,j*offset.y), Quaternion.identity, transform).GetComponent<RoomBehaviour>();
+                newRoom.UpdateRoom(board[Mathf.FloorToInt(i + j * size.x)].status);
+            }
+
+        }
+
+
+   }
+
 
     void MazeGenerator()
     {
@@ -107,8 +127,8 @@ public class DungeonGenerator : MonoBehaviour
                 }
             }
         }
-            
-               
+
+        GenerateDungeon();       
 
     }
 
