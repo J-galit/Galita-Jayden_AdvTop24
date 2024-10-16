@@ -54,6 +54,58 @@ public class DungeonGenerator : MonoBehaviour
 
             board[currentCell].vistited = true;
 
+            List<int> neighbors = CheckNeighbors(currentCell);
+
+            if (neighbors.Count == 0 ) 
+            { 
+                if(path.Count == 0)
+                {
+                    break;
+                }
+                else
+                {
+                    currentCell = path.Pop();
+                }
+            }
+            else
+            {
+                path.Push(currentCell);
+
+                int newCell = neighbors[Random.Range(0, neighbors.Count)];
+
+                if(newCell > currentCell)
+                {
+                    //down or right
+                    if (newCell - 1 == currentCell) 
+                    {
+                        board[currentCell].status[2] = true;
+                        currentCell = newCell;
+                        board[currentCell].status[3] = true;
+                    }
+                    else
+                    {
+                        board[currentCell].status[1] = true;
+                        currentCell = newCell;
+                        board[currentCell].status[0] = true;
+                    }
+                }
+                else
+                {
+                    //up or left
+                    if (newCell + 1 == currentCell)
+                    {
+                        board[currentCell].status[3] = true;
+                        currentCell = newCell;
+                        board[currentCell].status[2] = true;
+                    }
+                    else
+                    {
+                        board[currentCell].status[0] = true;
+                        currentCell = newCell;
+                        board[currentCell].status[1] = true;
+                    }
+                }
+            }
         }
             
                
@@ -77,9 +129,15 @@ public class DungeonGenerator : MonoBehaviour
         }
 
         //check right neighbor
-        if ((cell + 1) % size.x < board.Count && !board[Mathf.FloorToInt(cell + size.x)].vistited)
+        if ((cell + 1) % size.x != 0 && !board[Mathf.FloorToInt(cell + 1)].vistited)
         {
-            neighbors.Add(Mathf.FloorToInt(cell + size.x));
+            neighbors.Add(Mathf.FloorToInt(cell + 1));
+        }
+
+        //check left neighbor
+        if (cell % size.x != 0 && !board[Mathf.FloorToInt(cell - 1)].vistited)
+        {
+            neighbors.Add(Mathf.FloorToInt(cell - 1));
         }
 
         return neighbors;
