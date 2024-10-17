@@ -348,6 +348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mountainTree: {fileID: 6981014727192103518, guid: 8cbcc0c7e02b3ff4aafce90f7eeab80c, type: 3}
   valleyTree: {fileID: 191266, guid: c44bd9bdc114d4a60932c0087d9d1732, type: 3}
+  dungeonEntrance: {fileID: 1576980448526870, guid: 6cd36f5ade0ee474ab43ad38e0ba25b6, type: 3}
   xSize: 100
   zSize: 100
   scale: 20
