@@ -14,9 +14,11 @@ public class MeshGenerator : MonoBehaviour
     //Tree Spawning Variables
     List<Vector3> mountainPoints = new List<Vector3>();
     List<Vector3> valleyPoints = new List<Vector3>();
+    List<Vector3> dungeonEntrancePoints = new List<Vector3>();
 
     public GameObject mountainTree;
     public GameObject valleyTree;
+    public GameObject dungeonEntrance;
 
 
     int[] triangles;
@@ -42,8 +44,9 @@ public class MeshGenerator : MonoBehaviour
 
         CreateShape();
         UpdateMesh();
-        SpawnTree(mountainPoints, mountainTree, 10);
-        SpawnTree(valleyPoints, valleyTree, 60);
+        SpawnItem(mountainPoints, mountainTree, 10);
+        SpawnItem(valleyPoints, valleyTree, 60);
+        SpawnItem(dungeonEntrancePoints, dungeonEntrance, 100);
     }
 
     //Fractal Noise layering perlin noise.
@@ -72,6 +75,7 @@ public class MeshGenerator : MonoBehaviour
 
                 vertices[i] = new Vector3(x * distanceBetweenVerts, y, z * distanceBetweenVerts);
 
+                //Adds points to lists that define what item will be placed there.
                 if (vertices[i].y > 25)
                 {
                     mountainPoints.Add(vertices[i]);
@@ -80,6 +84,15 @@ public class MeshGenerator : MonoBehaviour
                 {
                     valleyPoints.Add(vertices[i]);
                 }
+                if (vertices[i].y > 20 && vertices[i].y < 25)
+                {
+                    if (dungeonEntrancePoints.Count <= 2)
+                    {
+                        dungeonEntrancePoints.Add(vertices[i]);
+                    }
+                        
+                }
+
 
                 i++;
             }
@@ -130,16 +143,16 @@ public class MeshGenerator : MonoBehaviour
     }
 
 
-    void SpawnTree(List<Vector3> points, GameObject typeOfTree,float frequency)
+    void SpawnItem(List<Vector3> points, GameObject typeOfPrefab,float frequency)
     {
         foreach (var point in points)
         {
             float treeCheck = Random.Range(0.0f, 100f);
 
-            if (treeCheck < frequency)
+            if (treeCheck <= frequency)
             {
 
-                Instantiate(typeOfTree, point, Quaternion.identity);
+                Instantiate(typeOfPrefab, point, Quaternion.identity);
 
             }
 
