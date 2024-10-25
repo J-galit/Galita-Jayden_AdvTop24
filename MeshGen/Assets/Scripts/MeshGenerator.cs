@@ -46,7 +46,7 @@ public class MeshGenerator : MonoBehaviour
         UpdateMesh();
         SpawnItem(mountainPoints, mountainTree, 10);
         SpawnItem(valleyPoints, valleyTree, 60);
-        SpawnItem(dungeonEntrancePoints, dungeonEntrance, 20);
+        SpawnItem(dungeonEntrancePoints, dungeonEntrance, 10);
     }
 
     //Fractal Noise layering perlin noise.
@@ -55,20 +55,18 @@ public class MeshGenerator : MonoBehaviour
         //List of vertices for the triangle
         vertices = new Vector3[(xSize + 1) * (zSize + 1)];
 
-        float offsetX = Random.Range(1, 9999);
-        float offsetZ = Random.Range(1, 9999);
-
         //Creates a grid of vertices
         for (int i =0, z = 0; z <= zSize; z++) 
         { 
             for (int x = 0; x <= xSize; x++)
             {
                 //Randomizes the perlin noise
-                
+                float offsetX = Random.Range(1, 9999);
+                float offsetZ = Random.Range(1, 9999);
 
                 //The multiple for scale
-                float xCoord = (x  + offsetX)* 1 / scale;
-                float zCoord = (z  + offsetZ)* 1 / scale;
+                float xCoord = (x * 1 / scale);// + offsetX);
+                float zCoord = (z * 1 / scale);//  + offsetZ);
 
                 //Perlin Noise to create the random generation.
                 float y = Mathf.PerlinNoise(xCoord, zCoord) * 32f +
@@ -90,12 +88,8 @@ public class MeshGenerator : MonoBehaviour
                 {
                     if (dungeonEntrancePoints.Count <= 2)
                     {
-
                         dungeonEntrancePoints.Add(vertices[i]);
-
                     }
-                        
-                    
                         
                 }
 
