@@ -32,7 +32,8 @@ public class DungeonGenerator : MonoBehaviour
         
     }
 
-   void GenerateDungeon()
+    
+   void GenerateDungeon() //Creates the physical dungeon, placing the rooms.
    {
 
         for (int i = 0; i < size.x; i++) 
@@ -54,7 +55,7 @@ public class DungeonGenerator : MonoBehaviour
    }
 
 
-    void MazeGenerator()
+    void MazeGenerator() //Creates the map of the dungeon.
     {
         board = new List<Cell>();
 
