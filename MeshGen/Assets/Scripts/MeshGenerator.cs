@@ -46,7 +46,7 @@ public class MeshGenerator : MonoBehaviour
         UpdateMesh();
         SpawnItem(mountainPoints, mountainTree, 10);
         SpawnItem(valleyPoints, valleyTree, 60);
-        SpawnItem(dungeonEntrancePoints, dungeonEntrance, 10);
+        SpawnItem(dungeonEntrancePoints, dungeonEntrance, 2);
     }
 
     //Fractal Noise layering perlin noise.
