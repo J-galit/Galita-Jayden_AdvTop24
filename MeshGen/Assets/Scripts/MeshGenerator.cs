@@ -155,7 +155,7 @@ public class MeshGenerator : MonoBehaviour
             if (itemCheck <= frequency)
             {
 
-                Instantiate(typeOfPrefab, point, Quaternion.identity);
+                Instantiate(typeOfPrefab, point, Quaternion.Euler(0, Random.Range(0.0f, 360f), 0));
 
             }
 
@@ -173,7 +173,7 @@ public class MeshGenerator : MonoBehaviour
 
             
 
-            Instantiate(typeOfPrefab, points[itemPlacement], Quaternion.identity);
+            Instantiate(typeOfPrefab, points[itemPlacement], Quaternion.Euler(0, Random.Range(0.0f, 360f), 0));
 
             
 
