@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour
 {
+    [SerializeField]
+    private int sceneNumber;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +25,7 @@ public class Portal : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(sceneNumber);
         }
     }
 }

@@ -9,6 +9,7 @@ public class DungeonGenerator : MonoBehaviour
     {
         public bool vistited = false;
         public bool[] status =new bool[4];
+        public bool hasExit = false;
     }
 
     public Vector2 size;
@@ -44,7 +45,7 @@ public class DungeonGenerator : MonoBehaviour
                 if (currentCell.vistited) 
                 {
                     var newRoom = Instantiate(room, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehaviour>();
-                    newRoom.UpdateRoom(board[Mathf.FloorToInt(i + j * size.x)].status);
+                    newRoom.UpdateRoom(board[Mathf.FloorToInt(i + j * size.x)].status, board[Mathf.FloorToInt(i + j * size.x)].hasExit);
                 }
                 
             }
@@ -82,7 +83,10 @@ public class DungeonGenerator : MonoBehaviour
 
             if(currentCell == board.Count - 1)
             {
+                print("done");
+                board[currentCell].hasExit = true;
                 break;
+
             }
 
             List<int> neighbors = CheckNeighbors(currentCell);
@@ -91,11 +95,13 @@ public class DungeonGenerator : MonoBehaviour
             { 
                 if(path.Count == 0)
                 {
+                    
                     break;
                 }
                 else
                 {
                     currentCell = path.Pop();
+
                 }
             }
             else
