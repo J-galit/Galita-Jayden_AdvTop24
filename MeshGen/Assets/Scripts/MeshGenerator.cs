@@ -46,7 +46,7 @@ public class MeshGenerator : MonoBehaviour
         UpdateMesh();
         SpawnItem(mountainPoints, mountainTree, 10);
         SpawnItem(valleyPoints, valleyTree, 60);
-        SpawnItem(dungeonEntrancePoints, dungeonEntrance, 2);
+        SpawnUniqueItem(dungeonEntrancePoints, dungeonEntrance, 10);
     }
 
     //Fractal Noise layering perlin noise.
@@ -93,10 +93,6 @@ public class MeshGenerator : MonoBehaviour
                     //Space out how many there are, remove from the list every so often (a random amount)
 
                     dungeonEntrancePoints.Add(vertices[i]);
-
-                    
-                        
-                    
                         
                 }
 
@@ -162,6 +158,24 @@ public class MeshGenerator : MonoBehaviour
                 Instantiate(typeOfPrefab, point, Quaternion.identity);
 
             }
+
+
+        }
+
+
+    }
+
+    void SpawnUniqueItem(List<Vector3> points, GameObject typeOfPrefab, float frequency)
+    {
+        for (int x = 0; x < frequency; x ++)
+        {
+            int itemPlacement = Random.Range(0, points.Count);
+
+            
+
+            Instantiate(typeOfPrefab, points[itemPlacement], Quaternion.identity);
+
+            
 
 
         }
