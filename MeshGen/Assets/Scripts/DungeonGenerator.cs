@@ -15,7 +15,7 @@ public class DungeonGenerator : MonoBehaviour
     public Vector2 size;
     public int startPos = 0;
 
-    public GameObject room;
+    public GameObject[] rooms;
     public Vector2 offset;
 
     List<Cell> board;
@@ -44,7 +44,8 @@ public class DungeonGenerator : MonoBehaviour
                 Cell currentCell = board[Mathf.FloorToInt(i + j * size.x)];
                 if (currentCell.vistited) 
                 {
-                    var newRoom = Instantiate(room, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehaviour>();
+                    int randomRoom = Random.Range(0, rooms.Length);
+                    var newRoom = Instantiate(rooms[randomRoom], new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehaviour>();
                     newRoom.UpdateRoom(board[Mathf.FloorToInt(i + j * size.x)].status, board[Mathf.FloorToInt(i + j * size.x)].hasExit);
                 }
                 
