@@ -309,9 +309,18 @@ MonoBehaviour:
   _size: {x: 10, y: 10}
   startPos: 0
   rooms:
-  - {fileID: 8663515700338237998, guid: 3c5ea5ae85db2ab41992affd90d4a9cd, type: 3}
-  - {fileID: 8663515700338237998, guid: ac42dac85bd312041911479c765c8652, type: 3}
-  - {fileID: 8663515700338237998, guid: 81cfc2827a1fd684289d48f24d1e878b, type: 3}
+  - room: {fileID: 8663515700338237998, guid: 3c5ea5ae85db2ab41992affd90d4a9cd, type: 3}
+    minPosition: {x: 0, y: 0}
+    maxPosition: {x: 10, y: 10}
+    obligatory: 0
+  - room: {fileID: 8663515700338237998, guid: ac42dac85bd312041911479c765c8652, type: 3}
+    minPosition: {x: 0, y: 0}
+    maxPosition: {x: 10, y: 10}
+    obligatory: 0
+  - room: {fileID: 8663515700338237998, guid: 81cfc2827a1fd684289d48f24d1e878b, type: 3}
+    minPosition: {x: 0, y: 0}
+    maxPosition: {x: 10, y: 10}
+    obligatory: 0
   offset: {x: 6, y: 6}
 --- !u!1 &1188965956
 GameObject:
