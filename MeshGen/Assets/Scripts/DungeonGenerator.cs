@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,12 +8,23 @@ public class DungeonGenerator : MonoBehaviour
 
     public class Cell
     {
-        public bool vistited = false;
+        public bool visited = false;
         public bool[] status =new bool[4];
         public bool hasExit = false;
     }
 
-    public Vector2 size;
+    [SerializeField]
+    private Vector2Int _size = new Vector2Int(1, 1);
+
+    public Vector2Int size
+    {
+        get => _size;
+
+        set => _size = value != Vector2Int.zero ? value : throw new System.ArgumentException("Size cannot be zero.");
+    }
+    
+ 
+
     public int startPos = 0;
 
     public GameObject[] rooms;
@@ -27,11 +39,7 @@ public class DungeonGenerator : MonoBehaviour
         MazeGenerator();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
     
    void GenerateDungeon() //Creates the physical dungeon, placing the rooms.
@@ -41,12 +49,12 @@ public class DungeonGenerator : MonoBehaviour
         {
             for (int j = 0; j < size.y; j++)
             {
-                Cell currentCell = board[Mathf.FloorToInt(i + j * size.x)];
-                if (currentCell.vistited) 
+                Cell currentCell = board[(i + j * size.x)];
+                if (currentCell.visited) 
                 {
                     int randomRoom = Random.Range(0, rooms.Length);
                     var newRoom = Instantiate(rooms[randomRoom], new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehaviour>();
-                    newRoom.UpdateRoom(board[Mathf.FloorToInt(i + j * size.x)].status, board[Mathf.FloorToInt(i + j * size.x)].hasExit);
+                    newRoom.UpdateRoom(board[(i + j * size.x)].status, board[(i + j * size.x)].hasExit);
                 }
                 
             }
@@ -63,7 +71,7 @@ public class DungeonGenerator : MonoBehaviour
 
         for (int i = 0; i < size.x; i++)
         {
-            for( int j = 0; j < size.y; j++)
+            for (int j = 0; j < size.y; j++)
             {
                 board.Add(new Cell());
             }
@@ -79,10 +87,10 @@ public class DungeonGenerator : MonoBehaviour
         while(k < 1000)
         {
             k++;
+            print(k);
+            board[currentCell].visited = true;
 
-            board[currentCell].vistited = true;
-
-            if(currentCell == board.Count - 1)
+            if (currentCell == board.Count - 1)
             {
                 print("done");
                 board[currentCell].hasExit = true;
@@ -92,7 +100,7 @@ public class DungeonGenerator : MonoBehaviour
 
             List<int> neighbors = CheckNeighbors(currentCell);
 
-            if (neighbors.Count == 0 ) 
+            if (neighbors.Count == 0) 
             { 
                 if(path.Count == 0)
                 {
@@ -155,27 +163,27 @@ public class DungeonGenerator : MonoBehaviour
         List<int> neighbors = new List<int>();
 
         //check up neighbor
-        if (cell - size.x >= 0 && !board[Mathf.FloorToInt(cell - size.x)].vistited)
+        if (cell - size.x >= 0 && !board[(cell - size.x)].visited)
         {
-            neighbors.Add(Mathf.FloorToInt(cell - size.x));
+            neighbors.Add((cell - size.x));
         }
 
         //check down neighbor
-        if (cell + size.x < board.Count && !board[Mathf.FloorToInt(cell + size.x)].vistited)
+        if (cell + size.x < board.Count && !board[(cell + size.x)].visited)
         {
-            neighbors.Add(Mathf.FloorToInt(cell + size.x));
+            neighbors.Add((cell + size.x));
         }
 
         //check right neighbor
-        if ((cell + 1) % size.x != 0 && !board[Mathf.FloorToInt(cell + 1)].vistited)
+        if ((cell + 1) % size.x != 0 && !board[(cell + 1)].visited)
         {
-            neighbors.Add(Mathf.FloorToInt(cell + 1));
+            neighbors.Add((cell + 1));
         }
 
         //check left neighbor
-        if (cell % size.x != 0 && !board[Mathf.FloorToInt(cell - 1)].vistited)
+        if (cell % size.x != 0 && !board[(cell - 1)].visited)
         {
-            neighbors.Add(Mathf.FloorToInt(cell - 1));
+            neighbors.Add((cell - 1));
         }
 
         return neighbors;
