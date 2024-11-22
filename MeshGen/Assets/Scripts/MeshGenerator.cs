@@ -25,6 +25,7 @@ public class MeshGenerator : MonoBehaviour
 
 
     //Perlin Noise Variables
+    
     public int xSize = 20;
     public int zSize = 20;
 

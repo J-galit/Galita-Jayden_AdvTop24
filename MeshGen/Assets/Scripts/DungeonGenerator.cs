@@ -13,21 +13,38 @@ public class DungeonGenerator : MonoBehaviour
         public bool hasExit = false;
     }
 
+    [System.Serializable]
+    public class Rule
+    {
+        public GameObject room;
+        public Vector2Int minPosition;
+        public Vector2Int maxPosition;
+
+        public bool obligatory;
+
+        public int ProbabilityOfSpawing(int x, int y)
+        {
+            // 0 - Cannot spawn 1 - can spawn 2- HAS to spawn
+            if (x>= minPosition.x && x<= maxPosition.x && y >= minPosition.y && y <= maxPosition.y)
+            {
+                return obligatory ? 2 : 1;
+            }
+
+            return 0;
+        }
+    }
+
     [SerializeField]
     private Vector2Int _size = new Vector2Int(1, 1);
-
     public Vector2Int size
     {
         get => _size;
-
         set => _size = value != Vector2Int.zero ? value : throw new System.ArgumentException("Size cannot be zero.");
     }
     
- 
-
     public int startPos = 0;
 
-    public GameObject[] rooms;
+    public Rule[] rooms;
     public Vector2 offset;
 
     List<Cell> board;
@@ -52,8 +69,37 @@ public class DungeonGenerator : MonoBehaviour
                 Cell currentCell = board[(i + j * size.x)];
                 if (currentCell.visited) 
                 {
-                    int randomRoom = Random.Range(0, rooms.Length);
-                    var newRoom = Instantiate(rooms[randomRoom], new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehaviour>();
+                    int randomRoom = -1;
+                    List<int> availableRooms = new List<int>();
+
+                    for (int k = 0; k < rooms.Length; k++)
+                    {
+                        int p = rooms[k].ProbabilityOfSpawing(i,j);
+
+                        if(p == 2)
+                        {
+                            randomRoom = k;
+                            break;
+                        } 
+                        else if(p == 1)
+                        {
+                            availableRooms.Add(k);
+                        }
+                    }
+
+                    if(randomRoom == -1) 
+                    {
+                        if(availableRooms.Count > 0)
+                        {
+                            randomRoom = availableRooms[Random.Range(0,availableRooms.Count)];
+                        }
+                        else
+                        {
+                            randomRoom = 0;
+                        }
+                    }
+
+                    var newRoom = Instantiate(rooms[randomRoom].room, new Vector3(i * offset.x, 0, -j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehaviour>();
                     newRoom.UpdateRoom(board[(i + j * size.x)].status, board[(i + j * size.x)].hasExit);
                 }
                 
