@@ -76,6 +76,7 @@ public class DungeonGenerator : MonoBehaviour
 
                     for (int k = 0; k < rooms.Length; k++)
                     {
+                        //checks if it can spawn in that area return 2 or 1
                         int p = rooms[k].ProbabilityOfSpawing(i,j);
 
                         if(p == 2)
@@ -88,7 +89,7 @@ public class DungeonGenerator : MonoBehaviour
                             availableRooms.Add(k);
                         }
                     }
-
+                    //Happens if it didn't spawn a obligatory room.
                     if(randomRoom == -1) 
                     {
                         if(availableRooms.Count > 0)

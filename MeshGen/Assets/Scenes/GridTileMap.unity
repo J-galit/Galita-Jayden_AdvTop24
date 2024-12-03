@@ -310,9 +310,9 @@ MonoBehaviour:
   startPos: 0
   rooms:
   - room: {fileID: 8663515700338237998, guid: 3c5ea5ae85db2ab41992affd90d4a9cd, type: 3}
-    minPosition: {x: 0, y: 0}
+    minPosition: {x: 9, y: 9}
     maxPosition: {x: 10, y: 10}
-    obligatory: 0
+    obligatory: 1
   - room: {fileID: 8663515700338237998, guid: ac42dac85bd312041911479c765c8652, type: 3}
     minPosition: {x: 0, y: 0}
     maxPosition: {x: 10, y: 10}
