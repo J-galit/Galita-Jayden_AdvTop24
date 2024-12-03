@@ -25,6 +25,7 @@ public class DungeonGenerator : MonoBehaviour
         public int ProbabilityOfSpawing(int x, int y)
         {
             // 0 - Cannot spawn 1 - can spawn 2- HAS to spawn
+            //Checks if the position is within the set range
             if (x>= minPosition.x && x<= maxPosition.x && y >= minPosition.y && y <= maxPosition.y)
             {
                 return obligatory ? 2 : 1;
@@ -50,7 +51,7 @@ public class DungeonGenerator : MonoBehaviour
     List<Cell> board;
 
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         MazeGenerator();
@@ -69,6 +70,7 @@ public class DungeonGenerator : MonoBehaviour
                 Cell currentCell = board[(i + j * size.x)];
                 if (currentCell.visited) 
                 {
+                 //Decides what room to spawn
                     int randomRoom = -1;
                     List<int> availableRooms = new List<int>();
 
@@ -133,7 +135,7 @@ public class DungeonGenerator : MonoBehaviour
         while(k < 1000)
         {
             k++;
-            print(k);
+            
             board[currentCell].visited = true;
 
             if (currentCell == board.Count - 1)
