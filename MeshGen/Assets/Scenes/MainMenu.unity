@@ -684,7 +684,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 79}
+  m_AnchoredPosition: {x: 0, y: 150}
   m_SizeDelta: {x: 1018.9, y: 130.4855}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &758010288
@@ -710,7 +710,7 @@ MonoBehaviour:
   m_text: "Welcome to my Procedural Generation project. \n\nWhen you press play you
     will be spawned into totally unique landscape created at runtime. \n\nYou can
     also use the dungeon entrances across the terrian to enter a procedural generated
-    dungeon.\n"
+    dungeon.\n\nUse WASD to move and the mouse to look around.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9f6e14b792dd6db41aab1176f845f18e, type: 2}
   m_sharedMaterial: {fileID: -6516931595372346155, guid: 9f6e14b792dd6db41aab1176f845f18e, type: 2}

@@ -173,10 +173,7 @@ public class MeshGenerator : MonoBehaviour
             int itemPlacement = Random.Range(0, points.Count);
 
             
-
             Instantiate(typeOfPrefab, points[itemPlacement], Quaternion.Euler(0, Random.Range(0.0f, 360f), 0));
-
-            
 
 
         }
